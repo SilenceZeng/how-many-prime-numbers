@@ -16,17 +16,32 @@ public class Main {
      * @return 1到n之间(不包括n)质数的个数
      */
     public static int howManyPrimeNumbers(int n) {
-        int result = 1;
-        if (n <= 2) {
-            return 0;
-        }
-        for (int i = 3; i < n; i++) {
-            if (isPrime(i)) {
-                result++;
+        int count = 1;
+        for (int i = 2; i < n; i++) {
+            for (int j = 2; j < i; j++) {
+                if (i % j == 0) {
+                    break;
+                }
+                if (j == i - 1) {
+                    count++;
+                }
             }
         }
-        return result;
+        return count;
     }
+
+//    public static int howManyPrimeNumbers(int n) {
+//        int result = 1;
+//        if (n <= 2) {
+//            return 0;
+//        }
+//        for (int i = 3; i < n; i++) {
+//            if (isPrime(i)) {
+//                result++;
+//            }
+//        }
+//        return result;
+//    }
 
     private static boolean isPrime(int n) {
         for (int j = 2; j < Math.sqrt(n) + 1; j++) {
